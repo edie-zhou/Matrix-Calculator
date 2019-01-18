@@ -24,9 +24,11 @@ public class CalculatorRunner {
         System.out.println("Enter 2 to subtract two matrices");
         System.out.println("Enter 3 to multiply two matrices");
         System.out.println("Enter 4 to multiply one matrix by a scalar");
+        System.out.println("Enter 5 to perform Gauss-Jordan Elimination on " +
+                "one matrix");
         in = input.next();
         while((!in.equals("1"))&&(!in.equals("2"))&&(!in.equals("3"))&&
-                (!in.equals("4"))){
+                (!in.equals("4"))&&(!in.equals("5"))){
             System.out.println("Input must be integer from 1 - 4, please " +
                     "try again");
             in = input.next();
@@ -34,6 +36,9 @@ public class CalculatorRunner {
 
         op = Integer.parseInt(in);
         switch(op){
+            case 5:
+                oneMatrixOperation(op);
+                break;
             case 4:
                 oneMatrixOperation(op);
                 break;
@@ -203,7 +208,7 @@ public class CalculatorRunner {
         int numColumns1;
 
         // scalar to multiply by
-        double scalar;
+        double scalar = 0;
 
         // Arrays to hold matrices
         double[][] matrix1;
@@ -229,13 +234,15 @@ public class CalculatorRunner {
             System.out.println();
         }
 
-        System.out.println();
-        System.out.println("Enter a scalar to multiply the matrix by");
-        scalar = input.nextDouble();
-
         switch(op){
+            case 5:
+                result = RREF.rref(matrix1);
+                break;
             case 4:
-                BasicOperations.scalarMultiply(matrix1, scalar);
+                System.out.println();
+                System.out.println("Enter a scalar to multiply the matrix by");
+                scalar = input.nextDouble();
+                result = BasicOperations.scalarMultiply(matrix1, scalar);
                 break;
             default:
                 break;
@@ -250,7 +257,8 @@ public class CalculatorRunner {
             System.out.println();
         }
 
-        System.out.println("Scalar: " + scalar);
+        if(op == 4)
+            System.out.println("Scalar: " + scalar);
 
         System.out.println();
         System.out.println("Result Matrix:");
@@ -339,4 +347,6 @@ public class CalculatorRunner {
         }
         return matrix;
     }
+
+    /
 }
