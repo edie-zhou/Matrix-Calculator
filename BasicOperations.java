@@ -67,21 +67,25 @@ public class BasicOperations {
      *  @return 2D array result matrix
      */
     public static double[][] multiply(double[][] matrix1, double[][] matrix2){
-        // number of rows
-        int numRows = matrix1.length;
+        // number of rows in matrix 1
+        int numRows1 = matrix1.length;
 
-        // number of columns
-        int numColumns = matrix2[0].length;
+        // number of columns in matrix 2
+        int numColumns2 = matrix2[0].length;
 
-        // result matrix
-        double[][] result = new double[numRows][numColumns];
+        // number of rows in matrix 2
+        int numRows2 = matrix2.length;
 
-        for (int j = 0; j < numRows; j++) {
-            for (int k = 0; k < numColumns; k++) {
-                result[j][k] = matrix1[j][k] * matrix2[k][j];
+        // product matrix
+        double[][] result = new double[numRows1][numColumns2];
+
+        for(int i = 0; i < numRows1; i++) {
+            for (int j = 0; j < numColumns2; j++) {
+                for (int k = 0; k < numRows2; k++) {
+                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
             }
         }
-
         return result;
     }
 

@@ -106,7 +106,7 @@ public class CalculatorRunner {
             switch(op){
                 // multiply
                 case 3:
-                    if((numRows1 != numColumns2) || (numColumns1 != numRows2)){
+                    if(numColumns1 != numRows2){
                         notValid = true;
                         System.out.println("Matrix dimensions are invalid," +
                                 " please try again");
@@ -145,13 +145,13 @@ public class CalculatorRunner {
 
         switch(op){
             case 3:
-                BasicOperations.multiply(matrix1, matrix2);
+                result = BasicOperations.multiply(matrix1, matrix2);
                 break;
             case 2:
-                BasicOperations.subtract(matrix1, matrix2);
+                result = BasicOperations.subtract(matrix1, matrix2);
                 break;
             case 1:
-                BasicOperations.add(matrix1, matrix2);
+                result = BasicOperations.add(matrix1, matrix2);
                 break;
             default:
                 break;
